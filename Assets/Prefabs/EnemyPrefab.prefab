@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9139546034638460770}
   m_Layer: 0
   m_Name: EnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bb98e7fa7e9ab4781ccf67d00826aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
+  drop: {fileID: 1122474531652629420, guid: 4c0e63b9149b3614a9a59031380ab67c, type: 3}
 --- !u!1 &8986472239322346471
 GameObject:
   m_ObjectHideFlags: 0

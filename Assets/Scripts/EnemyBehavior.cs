@@ -18,4 +18,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         enemyRb.AddForce((player.transform.position - transform.position).normalized * speed);
     }
+
+    public GameObject drop;
+    private void OnDestroy()
+    {
+        Instantiate(drop, transform.position, drop.transform.rotation);
+    }
 }

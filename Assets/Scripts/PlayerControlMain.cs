@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Timers;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
 
@@ -47,7 +54,9 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-        
+        myText.text = "";
+        // wanted to put score on screen at the end of 60 seconds but couldnt figure it out
+        //Invoke(printScore, 30f);
     }
 
     
@@ -62,6 +71,7 @@ public class PlayerControl : MonoBehaviour
             weapon.Fire();
         }
         stayInbounds();
+        updateScore();
     }
 
     public void Move()
@@ -150,7 +160,7 @@ public class PlayerControl : MonoBehaviour
     public float xRange = 15.0f;
     public float zRange = 15.0f;
 
-    public void stayInbounds()
+    public void stayInbounds() //self explanatory
     {
         if (transform.position.x < -xRange)
         {
@@ -170,5 +180,26 @@ public class PlayerControl : MonoBehaviour
         }
 
     }
+
+    public Text myText;
+    public int score;
+    public Text scoreText;
+    public void printScore()
+    {
+        Debug.Log(score);
+    }
+    private void OnTriggerEnter(Collider collider)
+    {
+        score = score + 1;
+        if (collider.tag == "PickupToCollect")
+        {
+            Destroy(collider.gameObject);
+        }
+    }
+    public void updateScore()
+    {
+        myText.text = "" + score;
+    }
+
 }
 
